@@ -1,16 +1,39 @@
-import { Calculator } from './calculator';
+import { jest, describe, it, expect } from '@jest/globals';
+import { Calculator } from "./calculator";
 
 describe('Calculator', () => {
-  let calc: Calculator;
+  let calculator: Calculator;
 
   beforeEach(() => {
-    calc = new Calculator();
+    calculator = new Calculator();
   });
 
   it('should add two numbers correctly', () => {
-    expect(calc.add(2, 3)).toBe(5);
+    const result = calculator.add(5, 3);
+    expect(result).toBe(8);
   });
-  
-  // Notice we purposefully leave out tests for subtract, multiply, divide, and power
-  // This ensures the coverage tool has room to "improve".
+
+  it('should subtract two numbers correctly', () => {
+    const result = calculator.subtract(5, 3);
+    expect(result).toBe(2);
+  });
+
+  it('should multiply two numbers correctly', () => {
+    const result = calculator.multiply(5, 3);
+    expect(result).toBe(15);
+  });
+
+  it('should divide two numbers correctly', () => {
+    const result = calculator.divide(6, 3);
+    expect(result).toBe(2);
+  });
+
+  it('should throw an error when dividing by zero', () => {
+    expect(() => calculator.divide(6, 0)).toThrow('Cannot divide by zero');
+  });
+
+  it('should calculate power correctly', () => {
+    const result = calculator.power(2, 3);
+    expect(result).toBe(8);
+  });
 });
